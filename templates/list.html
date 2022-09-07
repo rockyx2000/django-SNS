@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block header %}
+    <div class="alert alert-light" role="alert">
+        <h3>社内SNS</h3>
+    </div>
+{% endblock header %}
+
+{% block content %}
+  <div class="container">
+    <div class="card w-53">
+      {% for item in object_list %}
+          <div class="card-body">
+              <h5 class="card-title">{{ item.title }}</h5>
+              <p class="text-muted">{{ item.author }}</p>
+              <p class="card-text">{{ item.content }}</p>
+              <a href="#" class="btn btn-primary">Button</a>
+              <a href="#" class="btn btn-primary">Button</a>
+              <img src="{{ item.sns_image }}"></img>
+          </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock content %}

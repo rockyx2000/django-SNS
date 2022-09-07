@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.db import IntegrityError
 
+from .models import BoardModel
+
 # Create your views here.
 
 def signupfunc(request):
@@ -28,3 +30,7 @@ def loginfunc(request):
         else:
             return render(request, 'login.html', {"context": "ログインできませんでした"})
     return render(request, 'login.html', {})
+
+def listfunc(request):
+    object_list = BoardModel.objects.all()
+    return render(request, 'list.html', {"object_list": object_list})
