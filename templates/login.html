@@ -1,11 +1,15 @@
 {% extends "base.html" %}
+{% load static%}
+
+{% block customcss %}
+  <link href="{% static 'user-form.css' %}" rel="stylesheet">
+{% endblock customcss %}
 
 {% block content%}
     <body class="text-center">
         <main class="form-signin">
             <form class="login-form" method="POST">
                 {% csrf_token %}
-                {{ context }}
                 <h1 class="h3 mb-3 fw-normal">ログインしましょう</h1>
                 <div class="form-floating">
                 <input type="text" class="form-control" id="floatingInput" name="username" placeholder="userXXXX">
