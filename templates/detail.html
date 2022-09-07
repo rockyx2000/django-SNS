@@ -27,9 +27,6 @@
       {% endif %}
     </header>
   </div>
-    {% comment %} <div class="alert alert-light" role="alert">
-        <h3>社内SNS</h3>
-    </div> {% endcomment %}
 {% endblock header %}
 
 {% block content %}
@@ -42,10 +39,6 @@
             <p>{{ object.content }}</p>
             <img src="{{ object.sns_image.url }}">
           </div>
-          {% comment %} <a href="{% url 'good' object.pk %}" class="btn btn-primary">
-            <i class="bi bi-heart"></i>
-          </a>
-          <a href="#" class="btn btn-primary">Button</a> {% endcomment %}
         </div>
       </div>
   </div>

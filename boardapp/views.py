@@ -47,7 +47,7 @@ def detailfunc(request, pk):
     return render(request, "detail.html", {"object": object})
 
 def goodfunc(request, pk):
-    object = get_object_or_404(BoardModel, pk=pk)
-    object.good += 1
-    object.save
+    object = BoardModel.objects.get(pk=pk)
+    object.good = object.good + 1
+    object.save()
     return redirect("list")
