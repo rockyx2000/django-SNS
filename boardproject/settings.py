@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'boardapp.apps.BoardappConfig',
     'django_cleanup.apps.CleanupConfig',
+    'fontawesomefree',
 ]
 
 MIDDLEWARE = [

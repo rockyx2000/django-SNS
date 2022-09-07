@@ -1,9 +1,4 @@
 {% extends "base.html" %}
-{% load static %}
-
-{% block customcss %}
-    <link href="{% static 'stylesheet.css' %}" rel="stylesheet">
-{% endblock customcss %}
 
 {% block header %}
   <div class="container">
@@ -39,30 +34,19 @@
 
 {% block content %}
   <div class="container">
-    {% if user.is_authenticated %}
-      {% for item in object_list %}
-            <div class="card w-53" id="card-{{ item.id }}">
-                <div class="card-body">
-                    <a href="{% url 'detail' item.pk %}">
-                        <h5 class="card-title">{{ item.title }}</h5>
-                        <p class="text-muted">{{ item.author }}</p>
-                        <div class="card-text">
-                            <p>{{ item.content }}</p>
-                            <img src="{{ item.sns_image.url }}">
-                        </div>
-                    </a>
-                    <a href="{% url 'good' item.pk %}" class="btn btn-primary">
-                        <i class="bi bi-heart"></i>{{ item.good }}
-                    </a>
-                </div>
-            </div>
-      {% endfor %}
-    {% else %}
-    <div class="card w-53" id="card-{{ item.id }}">
+      <div class="card w-53" id="card-{{ object.pk}}">
         <div class="card-body">
-            <h1 class="card-title">ログインしてください</h5>
+          <h5 class="card-title">{{ object.title }}</h5>
+          <p class="text-muted">{{ object.author }}</p>
+          <div class="card-text">
+            <p>{{ object.content }}</p>
+            <img src="{{ object.sns_image.url }}">
+          </div>
+          {% comment %} <a href="{% url 'good' object.pk %}" class="btn btn-primary">
+            <i class="bi bi-heart"></i>
+          </a>
+          <a href="#" class="btn btn-primary">Button</a> {% endcomment %}
         </div>
       </div>
-    {% endif %}
   </div>
 {% endblock content %}
