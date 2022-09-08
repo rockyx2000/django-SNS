@@ -34,8 +34,9 @@ def loginfunc(request):
     return render(request, 'login.html', {})
 
 def listfunc(request):
+    current_user = request.user
     object_list = BoardModel.objects.all()
-    return render(request, 'list.html', {"object_list": object_list})
+    return render(request, 'list.html', {"object_list": object_list, "current_user": current_user})
 
 def logoutfunc(request):
     logout(request)
@@ -44,10 +45,15 @@ def logoutfunc(request):
 @login_required
 def detailfunc(request, pk):
     object = get_object_or_404(BoardModel, pk=pk)
-    return render(request, "detail.html", {"object": object})
+    current_user = request.user
+    return render(request, "detail.html", {"object": object, "current_user": current_user})
 
 def goodfunc(request, pk):
     object = get_object_or_404(BoardModel, pk=pk)
     object.good = object.good + 1
     object.save()
     return redirect("list")
+
+def profilefunc(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    return render(request, "profile.html", {"users": user})

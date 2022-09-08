@@ -30,12 +30,12 @@
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-              <strong>{{ current_user }}</strong>
+              <strong>{{ user.username }}</strong>
             </a>
             <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
               <li><a class="dropdown-item" href="#">New project...</a></li>
               <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="{% url 'profile' current_user.pk %}">Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'profile' user.pk %}">Profile</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="{% url 'logout' %}">ログアウト</a></li>
             </ul>
@@ -49,23 +49,15 @@
 {% block content %}
   <div class="container">
     {% if user.is_authenticated %}
-      {% for item in object_list %}
             <div class="card w-53" id="card-{{ item.id }}">
                 <div class="card-body">
-                    <a href="{% url 'detail' item.pk %}">
-                        <h5 class="card-title">{{ item.title }}</h5>
-                        <p class="text-muted">{{ item.author }}</p>
+                        <h5 class="card-title">プロフィール</h5>
+                        <p class="text-muted"></p>
                         <div class="card-text">
-                            <p>{{ item.content }}</p>
-                            <img src="{{ item.sns_image.url }}">
+                            <p>{{ user.username }}</p>
                         </div>
-                    </a>
-                    <a href="{% url 'good' item.pk %}" class="btn btn-primary">
-                        <i class="bi bi-heart"></i>{{ item.good }}
-                    </a>
                 </div>
             </div>
-      {% endfor %}
     {% else %}
     <div class="card w-53" id="card-{{ item.id }}">
         <div class="card-body">
