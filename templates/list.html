@@ -63,6 +63,9 @@
                     <a href="{% url 'good' item.pk %}" class="btn btn-primary">
                         <i class="bi bi-heart"></i>{{ item.good }}
                     </a>
+                    <a href="{% url 'read' item.pk %}" class="btn btn-primary">
+                      <i class="bi bi-check"></i>{{ item.read }}
+                    </a>
                 </div>
             </div>
       {% endfor %}

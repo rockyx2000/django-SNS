@@ -54,6 +54,17 @@ def goodfunc(request, pk):
     object.save()
     return redirect("list")
 
+def readfunc(request, pk):
+    object = get_object_or_404(BoardModel, pk=pk)
+    username = request.user.get_username()
+    if username in object.read_text:
+        return redirect("list")
+    else:
+        object.read += 1
+        object.read_text = object.read_text + " " + username
+        object.save()
+        return redirect("list")
+
 def profilefunc(request, pk):
     user = get_object_or_404(User, pk=pk)
     return render(request, "profile.html", {"users": user})

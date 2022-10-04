@@ -12,5 +12,5 @@ class BoardModel(models.Model):
     author = models.CharField(max_length=50)
     sns_image = models.ImageField(upload_to= image_directory_path)
     good = models.IntegerField()
-    read = models.IntegerField()
+    read = models.IntegerField(default=0)
     read_text = models.TextField()
