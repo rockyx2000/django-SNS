@@ -5,6 +5,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
 
 from .models import BoardModel
 
@@ -50,9 +52,14 @@ def detailfunc(request, pk):
 
 def goodfunc(request, pk):
     object = get_object_or_404(BoardModel, pk=pk)
-    object.good = object.good + 1
-    object.save()
-    return redirect("list")
+    user = request.user.get_username()
+    if user in object.good_user:
+        return redirect("list")
+    else:
+        object.good = object.good + 1
+        object.good_user = object.good_user + " " + user
+        object.save()
+        return redirect("list")
 
 def readfunc(request, pk):
     object = get_object_or_404(BoardModel, pk=pk)
@@ -68,3 +75,15 @@ def readfunc(request, pk):
 def profilefunc(request, pk):
     user = get_object_or_404(User, pk=pk)
     return render(request, "profile.html", {"users": user})
+
+class BoardCreate(CreateView):
+    template_name = "create.html"
+    model = BoardModel
+    fields = ("title", "content", "sns_image")
+    success_url = reverse_lazy("list")
+    
+    def form_valid(self, form):
+        board = form.save(commit=False)
+        board.author = self.request.user.get_username()
+        board.save()
+        return super().form_valid(form)
