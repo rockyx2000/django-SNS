@@ -81,9 +81,8 @@ class BoardCreate(CreateView):
     model = BoardModel
     fields = ("title", "content", "sns_image")
     success_url = reverse_lazy("list")
-    
-    def form_valid(self, form):
-        board = form.save(commit=False)
-        board.author = self.request.user.get_username()
-        board.save()
-        return super().form_valid(form)
+
+def deletefunc(request, pk):
+    object = get_object_or_404(BoardModel, pk=pk)
+    object.delete()
+    return redirect("list")
