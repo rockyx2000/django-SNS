@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block customcss %}
+    <link href="{% static 'stylesheet.css' %}" rel="stylesheet">
+{% endblock customcss %}
 
 {% block header %}
   <div class="container">
@@ -48,7 +53,7 @@
           <h5 class="card-title">{{ object.title }}</h5>
           <p class="text-muted">{{ object.author }}</p>
           <div class="card-text">
-            <p>{{ object.content }}</p>
+            <p>{{ object.content | linebreaksbr }}</p>
             {% if object.sns_image %}
               <img src="{{ object.sns_image.url }}">
             {% endif %}

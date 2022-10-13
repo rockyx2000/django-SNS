@@ -6,3 +6,11 @@ a{
 a:hover{
   color: black;
 }
+.card{
+  width: 75%;
+  margin: 0px auto 40px auto;
+  padding: 20px;
+}
+.card-body{
+  text-align: auto;
+}
