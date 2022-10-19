@@ -7,13 +7,14 @@ a:hover{
   color: black;
 }
 .card{
-  width: 75%;
+  width: 750px;
   margin: 0px auto 40px auto;
   padding: 20px;
   border-radius: 10px;
 }
 .post-link:hover{
   opacity: 0.7;
+  color: #808080;
 }
 img{
  border-radius: 10px;
