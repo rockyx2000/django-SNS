@@ -52,7 +52,7 @@
       {% for item in object_list %}
             <div class="card w-53" id="card-{{ item.id }}">
                 <div class="card-body" id="card-body-{{ item.id }}">
-                    <a href="{% url 'detail' item.pk %}">
+                    <a href="{% url 'detail' item.pk %}" class="post-link">
                         <h5 class="card-title">{{ item.title }}</h5>
                         <div class="card-detail">
                           <p class="text-muted">{{ item.author }}</p>
