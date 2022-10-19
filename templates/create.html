@@ -1,8 +1,14 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block customcss %}
+    <link href="{% static 'stylesheet.css' %}" rel="stylesheet">
+{% endblock customcss %}
+
 
 {% block content %}
 <div class="container">
-    <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <form class="create-form" method="POST" enctype="multipart/form-data">{% csrf_token %}
         <p>タイトル:<input type="text" class="form-control w-50" name="title"></p><br>
         <textarea class="form-control w-50" cols="500" name="content"></textarea><br>
         <input type="file" class="form-control w-50" name="sns_image"><br>
