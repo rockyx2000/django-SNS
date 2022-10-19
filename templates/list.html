@@ -74,14 +74,16 @@
                         </a>
                       </div>
                     </div>
-                    <div class="dropdown">
-                      <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-gear"></i>
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <li><a href="{% url "delete" item.pk %}" class="dropdown-item">削除</a></li>
-                      </ul>
-                    </div>
+                    {% if item.author == username %}
+                      <div class="dropdown">
+                        <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="bi bi-gear"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                          <li><a href="{% url "delete" item.pk %}" class="dropdown-item">削除</a></li>
+                        </ul>
+                      </div>
+                    {% endif %}
                 </div>
             </div>
       {% endfor %}
