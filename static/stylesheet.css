@@ -14,6 +14,15 @@ a:hover{
 .card-body{
   text-align: auto;
 }
+.card-detail{
+  margin-left: 10px;
+}
+.menu{
+  display: flex;
+}
+.dropdown{
+  text-align: right;
+}
 .create-form{
   margin: 20px;
 }

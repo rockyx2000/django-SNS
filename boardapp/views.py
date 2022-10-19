@@ -79,10 +79,14 @@ def profilefunc(request, pk):
 class BoardCreate(CreateView):
     template_name = "create.html"
     model = BoardModel
-    fields = ("title", "content", "sns_image")
+    fields = ("title", "author", "content", "sns_image")
     success_url = reverse_lazy("list")
 
 def deletefunc(request, pk):
     object = get_object_or_404(BoardModel, pk=pk)
-    object.delete()
-    return redirect("list")
+    username = request.user.get_username()
+    if username == object.author:
+        object.delete()
+        return redirect("list")
+    else:
+        return redirect("list")
