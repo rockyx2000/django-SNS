@@ -39,7 +39,7 @@ def listfunc(request):
     current_user = request.user
     username = request.user.get_username()
     object_list = BoardModel.objects.all()
-    return render(request, 'list.html', {"object_list": object_list, "current_user": current_user, "username": request.user.get_username()})
+    return render(request, 'list.html', {"object_list": object_list, "current_user": current_user, "username": username})
 
 def logoutfunc(request):
     logout(request)
