@@ -12,15 +12,15 @@ a:hover{
   padding: 20px;
   border-radius: 10px;
 }
-.post-link:hover{
-  opacity: 0.7;
-  color: #808080;
-}
 img{
  border-radius: 10px;
 }
 .card-body{
   text-align: auto;
+}
+.card-body:hover{
+  opacity: 0.7;
+  background-color: #f5f5f5;
 }
 .card-detail{
   margin-left: 10px;
