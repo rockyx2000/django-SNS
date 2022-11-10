@@ -38,8 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'boardapp.apps.BoardappConfig',
-    'django_cleanup.apps.CleanupConfig',
-    'fontawesomefree',
 ]
 
 MIDDLEWARE = [
