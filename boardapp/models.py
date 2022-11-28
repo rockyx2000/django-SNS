@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 import uuid
 
 # Create your models here.
@@ -15,3 +16,11 @@ class BoardModel(models.Model):
     good_user = models.TextField(default="")
     read = models.IntegerField(default=0)
     read_text = models.TextField()
+    
+class LikeModel(models.Model):
+    post_id = models.IntegerField()
+    user_id = models.IntegerField()
+
+class ReadModel(models.Model):
+    post_id = models.ForeignKey('BoardModel', on_delete=models.CASCADE)
+    user_id = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)

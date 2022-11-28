@@ -11,16 +11,22 @@
             <form class="login-form" method="POST">
                 {% csrf_token %}
                 <h1 class="h3 mb-3 fw-normal">ログイン</h1>
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" name="username" placeholder="userXXXX">
-                    <label for="floatingInput">ユーザー名</label>
+                
+                <div class="form-body">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="floatingInput" name="username" placeholder="userXXXX">
+                        <label for="floatingInput">ユーザー名</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+                        <label for="floatingPassword">パスワード</label>
+                    </div>
                 </div>
-                <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
-                    <label for="floatingPassword">パスワード</label>
+
+                <div class="buttons">
+                    <button class="w-100 btn btn-lg btn-primary" type="submit" id="login-button">ログイン</button>
+                    <a class="w-100 btn btn-lg btn-primary" href="{% url 'signup' %}" id="registar-button">登録</a>
                 </div>
-                <button class="w-100 btn btn-lg btn-primary" type="submit">ログイン</button>
-                <a class="w-100 btn btn-lg btn-primary" href="{% url 'signup' %}">登録</a>
                 <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
             </form>
         </main>

@@ -15,6 +15,9 @@ a:hover{
 img{
  border-radius: 10px;
 }
+.post-image{
+  width: 60%;
+}
 .card-body{
   text-align: auto;
 }
@@ -35,4 +38,10 @@ img{
 }
 .create-form{
   margin: 20px;
+}
+.update-form{
+  margin: 20px;
+}
+.form-title, .form-content, .form-image{
+  margin-bottom: 23px;
 }

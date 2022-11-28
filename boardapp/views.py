@@ -5,10 +5,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy
 
-from .models import BoardModel
+from .models import BoardModel, LikeModel, ReadModel
 
 # Create your views here.
 
@@ -56,6 +56,9 @@ def goodfunc(request, pk):
     object = get_object_or_404(BoardModel, pk=pk)
     user = request.user.get_username()
     if user in object.good_user:
+        object.good -= 1
+        object.good_user = object.good_user.replace(user, "")
+        object.save()
         return redirect("list")
     else:
         object.good = object.good + 1
@@ -67,6 +70,9 @@ def readfunc(request, pk):
     object = get_object_or_404(BoardModel, pk=pk)
     username = request.user.get_username()
     if username in object.read_text:
+        object.read -= 1
+        object.read_text = object.read_text.replace(username, "")
+        object.save()
         return redirect("list")
     else:
         object.read += 1
@@ -92,3 +98,9 @@ def deletefunc(request, pk):
         return redirect("list")
     else:
         return redirect("list")
+    
+class BoardEdit(UpdateView):
+    template_name = "edit.html"
+    model = BoardModel
+    fields = ("title", "content", "sns_image")
+    success_url = reverse_lazy("list")

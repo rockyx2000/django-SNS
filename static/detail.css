@@ -19,6 +19,9 @@ a{
   img{
    border-radius: 10px;
   }
+  .post-image{
+    width: 60%;
+  }  
   .card-body{
     text-align: auto;
   }

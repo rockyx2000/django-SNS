@@ -14,7 +14,7 @@
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="#" class="nav-link px-2 link-secondary">ホーム</a></li>
-        <li><a href="{% url "create" %}" class="nav-link px-2 link-dark">ツイート</a></li>
+        <li><a href="{% url "create" %}" class="nav-link px-2 link-dark">新規投稿</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">トレンド</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">よくある質問</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">紹介</a></li>
@@ -26,7 +26,6 @@
         </div>
       {% else %}
       <div class="col-md-3 text-end">
-        {% comment %} <a href="{% url 'logout' %}"  class="btn btn-outline-primary me-2">ログアウト</a> {% endcomment %}
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="/uploads/default.png" alt="" width="32" height="32" class="rounded-circle me-2">
@@ -61,19 +60,21 @@
                           <div class="card-text">
                               <p>{{ item.content | linebreaksbr }}</p>
                               {% if item.sns_image %}
-                                <img src="{{ item.sns_image.url }}">
+                                <img src="{{ item.sns_image.url }}" class="post-image">
                               {% endif %}
                           </div>
                         </div>
                     </a>
                     <div class="menu">
                       <div class="buttons">
-                        <a href="{% url 'good' item.pk %}" class="btn btn-primary">
-                            <i class="bi bi-heart"></i>{{ item.good }}
-                        </a>
-                        <a href="{% url 'read' item.pk %}" class="btn btn-primary">
-                          <i class="bi bi-check"></i> {{ item.read }}
-                        </a>
+                        {% if item.author != username %}
+                          <a href="{% url 'good' item.pk %}" class="btn btn-primary">
+                              <i class="bi bi-heart"></i>{{ item.good }}
+                          </a>
+                          <a href="{% url 'read' item.pk %}" class="btn btn-primary">
+                            <i class="bi bi-check"></i> {{ item.read }}
+                          </a>  
+                        {% endif %}
                       </div>
                     </div>
                     {% if item.author == username %}
@@ -82,7 +83,8 @@
                           <i class="bi bi-gear"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                          <li><a href="{% url "delete" item.pk %}" class="dropdown-item">削除</a></li>
+                          <li><a href="{% url "edit" item.pk %}" class="dropdown-item">編集</a></li>
+                          <li><a href="{% url "delete" item.pk %}" class="dropdown-item" onclick="return confirm('本当に削除しますか？')">削除</a></li>
                         </ul>
                       </div>
                     {% endif %}

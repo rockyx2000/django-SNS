@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import deletefunc, signupfunc, loginfunc, listfunc, logoutfunc, detailfunc, goodfunc, profilefunc, readfunc, BoardCreate, deletefunc
+from .views import deletefunc, signupfunc, loginfunc, listfunc, logoutfunc, detailfunc, goodfunc, profilefunc, readfunc, BoardCreate, deletefunc, BoardEdit
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -13,7 +13,8 @@ urlpatterns = [
     path('read/<int:pk>', readfunc, name="read"),
     path('profile/<int:pk>', profilefunc, name='profile'),
     path('create/', BoardCreate.as_view(), name='create'),
-    path('delete/<int:pk>', deletefunc, name='delete')
+    path('delete/<int:pk>', deletefunc, name='delete'),
+    path('edit/<int:pk>', BoardEdit.as_view(), name='edit')
 ]
 
 urlpatterns += static(settings.IMAGE_URL, document_root=settings.IMAGE_ROOT)
