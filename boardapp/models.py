@@ -17,10 +17,5 @@ class BoardModel(models.Model):
     read = models.IntegerField(default=0)
     read_text = models.TextField()
     
-class LikeModel(models.Model):
-    post_id = models.IntegerField()
-    user_id = models.IntegerField()
-
-class ReadModel(models.Model):
-    post_id = models.ForeignKey('BoardModel', on_delete=models.CASCADE)
-    user_id = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    def __str__(self):
+        return self.title

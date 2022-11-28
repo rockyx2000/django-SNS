@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy
 
-from .models import BoardModel, LikeModel, ReadModel
+from .models import BoardModel
 
 # Create your views here.
 
