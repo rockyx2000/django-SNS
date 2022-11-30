@@ -62,9 +62,9 @@
           </div>
           {% if object.author == username %}
             <div class="dropdown">
-              <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+              <a type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-gear"></i>
-              </button>
+              </a>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                 <li><a href="{% url "edit" object.pk %}" class="dropdown-item">編集</a></li>
                 <li><a href="{% url "delete" object.pk %}" class="dropdown-item">削除</a></li>

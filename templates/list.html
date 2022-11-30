@@ -68,27 +68,27 @@
                     <div class="menu">
                       <div class="buttons">
                         {% if item.author != username %}
-                          <a href="{% url 'good' item.pk %}" class="btn btn-primary">
+                          <a href="{% url 'good' item.pk %}" class="post-button">
                               <i class="bi bi-heart"></i>{{ item.good }}
                           </a>
-                          <a href="{% url 'read' item.pk %}" class="btn btn-primary">
+                          <a href="{% url 'read' item.pk %}" class="post-button">
                             <i class="bi bi-check"></i> {{ item.read }}
                           </a>  
                         {% endif %}
                       </div>
                     </div>
-                    {% if item.author == username %}
-                      <div class="dropdown">
-                        <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                          <i class="bi bi-gear"></i>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                          <li><a href="{% url "edit" item.pk %}" class="dropdown-item">編集</a></li>
-                          <li><a href="{% url "delete" item.pk %}" class="dropdown-item" onclick="return confirm('本当に削除しますか？')">削除</a></li>
-                        </ul>
-                      </div>
-                    {% endif %}
                 </div>
+                {% if item.author == username %}
+                  <div class="dropdown">
+                    <a class="settings" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-gear"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      <li><a href="{% url "edit" item.pk %}" class="dropdown-item">編集</a></li>
+                      <li><a href="{% url "delete" item.pk %}" class="dropdown-item" onclick="return confirm('本当に削除しますか？')">削除</a></li>
+                    </ul>
+                  </div>
+                {% endif %}
             </div>
       {% endfor %}
     {% else %}

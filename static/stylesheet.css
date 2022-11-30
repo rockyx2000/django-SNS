@@ -1,9 +1,9 @@
-a{
+.post-link{
   color: black;
   text-decoration: none;
   text-decoration-color: black;
 }
-a:hover{
+.post-link:hover{
   color: black;
 }
 .card{
@@ -30,6 +30,25 @@ img{
   margin-left: 10px;
   margin-bottom: 20px;
 }
+.settings{
+  color: black;
+  text-decoration: none;
+  text-decoration-color: black;
+}
+.settings:hover{
+  color: black;
+  cursor: pointer;
+}
+.post-button{
+  color: black;
+  text-decoration: none;
+  text-decoration-color: black;
+}
+.post-button:hover{
+  color: black;
+  cursor: pointer;
+}
+
 .menu{
   display: flex;
 }
