@@ -114,4 +114,4 @@ class BoardEdit(UpdateView):
         else:
             current_user = request.user
             object = BoardModel.objects.all()
-            return render(request, "list.html", {"object_list": object ,"error": "この投稿は編集できません", "current_user": current_user, "username": current_user.get_username() })
+            return render(request, "list.html", {"object_list": object ,"error": "この投稿は編集できません", "current_user": current_user, "username": current_user.get_username()})
