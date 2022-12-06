@@ -103,4 +103,15 @@ class BoardEdit(UpdateView):
     template_name = "edit.html"
     model = BoardModel
     fields = ("title", "content", "sns_image")
-    success_url = reverse_lazy("list")
+    
+    def get_success_url(self):
+        return reverse_lazy("detail", kwargs={"pk": self.kwargs["pk"]})
+    
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.author == request.user.get_username():
+            return super().get(request, *args, **kwargs)
+        else:
+            current_user = request.user
+            object = BoardModel.objects.all()
+            return render(request, "list.html", {"object_list": object ,"error": "この投稿は編集できません", "current_user": current_user, "username": current_user.get_username() })

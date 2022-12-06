@@ -13,7 +13,7 @@
       </div>
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 link-secondary">ホーム</a></li>
+        <li><a href="{% url "list" %}" class="nav-link px-2 link-secondary">ホーム</a></li>
         <li><a href="{% url "create" %}" class="nav-link px-2 link-dark">新規投稿</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">トレンド</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">よくある質問</a></li>
@@ -50,6 +50,15 @@
 {% block content %}
   <div class="container">
     {% if user.is_authenticated %}
+
+    {% if error %}
+      <div class="errors">
+        <div class="alert alert-danger w-50 text-center">
+          <i class="bi bi-exclamation-circle"></i>{{ error }}
+        </div>
+      </div>
+    {% endif %}
+
       {% for item in object_list %}
             <div class="card w-53" id="card-{{ item.id }}">
                 <div class="card-body" id="card-body-{{ item.id }}">
